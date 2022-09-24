@@ -13,6 +13,15 @@ namespace heist
 
             string newMember = Console.ReadLine();
 
+            Console.WriteLine("What is their skill level (positive integer)?");
+
+            string skillLevel = Console.ReadLine();
+
+            Console.WriteLine("What is their courage level (0.00 - 2.0)?");
+
+            string courageLevel = Console.ReadLine();
+
+            
         }
     }
 }
