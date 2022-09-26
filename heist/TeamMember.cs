@@ -9,7 +9,6 @@ namespace heist
         public int SkillLevel {get; set;}
         public double CourageFactor {get; set;}
 
-        public List<TeamMember> teamMembers = new List<TeamMember>(){};
     }
 
 

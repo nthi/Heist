@@ -8,6 +8,8 @@ namespace heist
         static void Main(string[] args)
         {
             TeamMember getMember = new TeamMember();
+            List<TeamMember> teamMembers = new List<TeamMember>();
+
 
             Console.WriteLine("Plan Your Heist!");
 
@@ -17,12 +19,18 @@ namespace heist
 
             Console.WriteLine("What is their skill level (positive integer)?");
 
-            getMember.SkillLevel = int.Parse(Console.ReadLine()); //this is an int, fix
+            getMember.SkillLevel = int.Parse(Console.ReadLine());
 
             Console.WriteLine("What is their courage level (0.00 - 2.0)?");
 
             getMember.CourageFactor = double.Parse(Console.ReadLine()); //this is a double, fix
 
+            teamMembers.Add(getMember);
+
+            foreach (TeamMember member in teamMembers) 
+            {
+                Console.WriteLine($"Member: {member.Name}; Skill: {member.SkillLevel}; Courage: {member.CourageFactor}.");
+            }
             
         }
     }
