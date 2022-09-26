@@ -7,19 +7,21 @@ namespace heist
     {
         static void Main(string[] args)
         {
+            TeamMember getMember = new TeamMember();
+
             Console.WriteLine("Plan Your Heist!");
 
             Console.WriteLine("Add team member. What is their name?");
 
-            string newMember = Console.ReadLine();
+            getMember.Name = Console.ReadLine();
 
             Console.WriteLine("What is their skill level (positive integer)?");
 
-            string skillLevel = Console.ReadLine();
+            getMember.SkillLevel = int.Parse(Console.ReadLine()); //this is an int, fix
 
             Console.WriteLine("What is their courage level (0.00 - 2.0)?");
 
-            string courageLevel = Console.ReadLine();
+            getMember.CourageFactor = double.Parse(Console.ReadLine()); //this is a double, fix
 
             
         }
