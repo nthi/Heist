@@ -8,7 +8,89 @@ namespace heist
     {
         static void Main(string[] args)
         {
-            // Console.WriteLine("Plan Your Heist!");
+            List<IRobber> rolodex = new List<IRobber>();
+
+            Hacker ronny = new Hacker();
+            ronny.Name = "Ronny";
+            ronny.SkillLevel = 77;
+            ronny.PercentageCut = 20;
+
+            Hacker mindi = new Hacker();
+            mindi.Name = "Mindi";
+            mindi.SkillLevel = 85;
+            mindi.PercentageCut = 30;
+
+            Muscle bean = new Muscle();
+            bean.Name = "Bean";
+            bean.SkillLevel = 55;
+            bean.PercentageCut = 10;
+
+            Muscle teddy = new Muscle();
+            teddy.Name = "Teddy";
+            teddy.SkillLevel = 80;
+            teddy.PercentageCut = 30;
+
+            LockSpecialist shades = new LockSpecialist();
+            shades.Name = "Shades";
+            shades.SkillLevel = 68;
+            shades.PercentageCut = 15;
+
+            LockSpecialist tammy = new LockSpecialist();
+            tammy.Name = "Tammy";
+            tammy.SkillLevel = 90;
+            tammy.PercentageCut = 30;
+
+            rolodex.Add(ronny);
+            rolodex.Add(mindi);
+            rolodex.Add(bean);
+            rolodex.Add(teddy);
+            rolodex.Add(shades);
+            rolodex.Add(tammy);
+
+            Console.WriteLine("Plan Your Heist!");
+            Console.WriteLine($"Current contacts in roldex: {rolodex.Count()}");
+
+
+            Console.WriteLine("Add an operative:");
+            string operativeName = Console.ReadLine();
+            while (operativeName != " ")
+            {
+                Console.WriteLine("Type 'h' to choose Hacker, 'm' for Muscle, or 'l' for Lock Specialist");
+                string operativeChoice = Console.ReadLine();
+                Console.WriteLine("Operative's skill level (1-100):");
+                int operativeSkill = int.Parse(Console.ReadLine());
+                Console.WriteLine("Operative's percentage cut (1-100):");
+                int operativeCut = int.Parse(Console.ReadLine());
+
+                if (operativeChoice == "h")
+                {
+                    Hacker newMember = new Hacker();
+                    newMember.Name = operativeName;
+                    newMember.SkillLevel = operativeSkill;
+                    newMember.PercentageCut = operativeCut;
+                    rolodex.Add(newMember);
+                }
+                else if (operativeChoice == "m")
+                {
+                    Muscle newMember = new Muscle();
+                    newMember.Name = operativeName;
+                    newMember.SkillLevel = operativeSkill;
+                    newMember.PercentageCut = operativeCut;
+                    rolodex.Add(newMember);
+                }
+                else if (operativeChoice == "l")
+                {
+                    LockSpecialist newMember = new LockSpecialist();
+                    newMember.Name = operativeName;
+                    newMember.SkillLevel = operativeSkill;
+                    newMember.PercentageCut = operativeCut;
+                    rolodex.Add(newMember);
+                }
+            }
+
+            
+
+
             // Console.WriteLine("What is the bank's difficulty level (1-100)?");
             // int difficulty = int.Parse(Console.ReadLine());
             // int heistLuck = new Random().Next(-10, 10);
@@ -51,7 +133,7 @@ namespace heist
 
             // Console.WriteLine("How many trial runs should we simulate?");
             // int trialRuns = int.Parse(Console.ReadLine());
-            
+
             // int successCount = 0;
             // int failCount = 0;
 
@@ -105,7 +187,7 @@ namespace heist
             // // }
             //     Console.WriteLine($"Successful runs: {successCount}");
             //     Console.WriteLine($"Failed runs: {failCount}");
-          
+
 
 
         }
