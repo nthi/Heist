@@ -6,13 +6,12 @@ namespace heist
 {
     public interface IRobber
     {
+        //do these need to be get and set or just get?
         public string Name { get; set; }
         public int SkillLevel { get; set;}
         public int PercentageCut { get; set; }
         
-        public void PerformSkill (Bank name)
-        {
-            //not sure what this means. Method called PerformSkill that takes in a Bank param and doesn't return anything. Does this mean it does nothing?
-        }
+        public void PerformSkill (Bank bankname);
+
     }
 }
