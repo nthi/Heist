@@ -10,6 +10,12 @@ namespace heist
         public string Name { get; set; }
         public int SkillLevel { get; set; }
         public int PercentageCut { get; set; }
+
+        public void nameClass()
+        {
+            Console.WriteLine("Hacker");
+        }
+
         public void PerformSkill(Bank bankname)
         {
             bankname.AlarmScore = bankname.AlarmScore - SkillLevel;

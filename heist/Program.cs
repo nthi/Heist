@@ -48,47 +48,96 @@ namespace heist
             rolodex.Add(tammy);
 
             Console.WriteLine("Plan Your Heist!");
-            Console.WriteLine($"Current contacts in roldex: {rolodex.Count()}");
+            Console.WriteLine($"Current contacts in rolodex: {rolodex.Count()}");
 
-
-            Console.WriteLine("Add an operative:");
-            string operativeName = Console.ReadLine();
-            while (operativeName != " ")
+            //I need loop logic that helps me run until they are done with rolodex.
+            for (int i = 1; i > 0; i++)
             {
-                Console.WriteLine("Type 'h' to choose Hacker, 'm' for Muscle, or 'l' for Lock Specialist");
-                string operativeChoice = Console.ReadLine();
-                Console.WriteLine("Operative's skill level (1-100):");
-                int operativeSkill = int.Parse(Console.ReadLine());
-                Console.WriteLine("Operative's percentage cut (1-100):");
-                int operativeCut = int.Parse(Console.ReadLine());
+                Console.WriteLine("Add an operative:");
+                string operativeName = Console.ReadLine();
+                if (operativeName != " ")
+                {
+                    Console.WriteLine("Type 'h' to choose Hacker, 'm' for Muscle, or 'l' for Lock Specialist");
+                    string operativeChoice = Console.ReadLine();
+                    Console.WriteLine("Operative's skill level (1-100):");
+                    int operativeSkill = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Operative's percentage cut (1-100):");
+                    int operativeCut = int.Parse(Console.ReadLine());
 
-                if (operativeChoice == "h")
-                {
-                    Hacker newMember = new Hacker();
-                    newMember.Name = operativeName;
-                    newMember.SkillLevel = operativeSkill;
-                    newMember.PercentageCut = operativeCut;
-                    rolodex.Add(newMember);
+                    if (operativeChoice == "h")
+                    {
+                        Hacker newMember = new Hacker();
+                        newMember.Name = operativeName;
+                        newMember.SkillLevel = operativeSkill;
+                        newMember.PercentageCut = operativeCut;
+                        rolodex.Add(newMember);
+                    }
+                    else if (operativeChoice == "m")
+                    {
+                        Muscle newMember = new Muscle();
+                        newMember.Name = operativeName;
+                        newMember.SkillLevel = operativeSkill;
+                        newMember.PercentageCut = operativeCut;
+                        rolodex.Add(newMember);
+                    }
+                    else if (operativeChoice == "l")
+                    {
+                        LockSpecialist newMember = new LockSpecialist();
+                        newMember.Name = operativeName;
+                        newMember.SkillLevel = operativeSkill;
+                        newMember.PercentageCut = operativeCut;
+                        rolodex.Add(newMember);
+                    }
                 }
-                else if (operativeChoice == "m")
+                else if (operativeName == " ")
                 {
-                    Muscle newMember = new Muscle();
-                    newMember.Name = operativeName;
-                    newMember.SkillLevel = operativeSkill;
-                    newMember.PercentageCut = operativeCut;
-                    rolodex.Add(newMember);
-                }
-                else if (operativeChoice == "l")
-                {
-                    LockSpecialist newMember = new LockSpecialist();
-                    newMember.Name = operativeName;
-                    newMember.SkillLevel = operativeSkill;
-                    newMember.PercentageCut = operativeCut;
-                    rolodex.Add(newMember);
+                    break;
                 }
             }
 
-            
+            Bank FirstStreet = new Bank();
+            FirstStreet.AlarmScore = new Random().Next(0, 100);
+            FirstStreet.VaultScore = new Random().Next(0, 100);
+            FirstStreet.SecurityGuardScore = new Random().Next(0, 100);
+            FirstStreet.CashOnHand = new Random().Next(50000, 1000000);
+
+
+            Console.WriteLine($"Recon:");
+            Console.WriteLine($"------");
+
+            if (FirstStreet.AlarmScore > FirstStreet.VaultScore && FirstStreet.AlarmScore > FirstStreet.SecurityGuardScore)
+            {
+                Console.WriteLine($"Most Secure: Alarm");
+            }
+            else if (FirstStreet.VaultScore > FirstStreet.AlarmScore && FirstStreet.VaultScore > FirstStreet.SecurityGuardScore)
+            {
+                Console.WriteLine($"Most Secure: Vault");
+            }
+            else if (FirstStreet.SecurityGuardScore > FirstStreet.AlarmScore && FirstStreet.SecurityGuardScore > FirstStreet.VaultScore)
+            {
+                Console.WriteLine($"Most Secure: Guard");
+            }
+            else
+            {
+                Console.WriteLine($"Most Secure: UNCERTAIN.");
+            }
+
+            Console.WriteLine($"Team Report:");
+            Console.WriteLine($"------------");
+            foreach (IRobber member in rolodex)
+            {
+                Console.WriteLine("...............");
+                Console.WriteLine($"{member.Name}");
+                member.nameClass();
+                Console.WriteLine($"Skill Level: {member.SkillLevel}");
+                Console.WriteLine($"Cut: {member.PercentageCut}%");
+                Console.WriteLine("...............");
+                Console.WriteLine();
+
+            }
+
+
+
 
 
             // Console.WriteLine("What is the bank's difficulty level (1-100)?");
