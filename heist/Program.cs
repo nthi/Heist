@@ -160,6 +160,7 @@ namespace heist
 
             bool checkSecurity = FirstStreet.IsSecure;
 //the math for percentage is not working out. outputs 0 each time.
+//possibly need to cast the math half to the right int/double? idk.
             if (checkSecurity == false)
             {
                 Console.WriteLine($"Heist succeeds!");
