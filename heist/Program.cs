@@ -17,7 +17,7 @@ namespace heist
 
             Hacker mindi = new Hacker();
             mindi.Name = "Mindi";
-            mindi.SkillLevel = 85;
+            mindi.SkillLevel = 300;
             mindi.PercentageCut = 30;
 
             Muscle bean = new Muscle();
@@ -27,7 +27,7 @@ namespace heist
 
             Muscle teddy = new Muscle();
             teddy.Name = "Teddy";
-            teddy.SkillLevel = 80;
+            teddy.SkillLevel = 300;
             teddy.PercentageCut = 30;
 
             LockSpecialist shades = new LockSpecialist();
@@ -37,7 +37,7 @@ namespace heist
 
             LockSpecialist tammy = new LockSpecialist();
             tammy.Name = "Tammy";
-            tammy.SkillLevel = 90;
+            tammy.SkillLevel = 300;
             tammy.PercentageCut = 30;
 
             rolodex.Add(ronny);
@@ -99,7 +99,9 @@ namespace heist
             FirstStreet.AlarmScore = new Random().Next(0, 100);
             FirstStreet.VaultScore = new Random().Next(0, 100);
             FirstStreet.SecurityGuardScore = new Random().Next(0, 100);
-            FirstStreet.CashOnHand = new Random().Next(50000, 1000000);
+            // FirstStreet.CashOnHand = new Random().Next(50000, 1000000);
+            FirstStreet.CashOnHand = 50000;
+
 
 
             Console.WriteLine($"Recon:");
@@ -133,9 +135,47 @@ namespace heist
                 Console.WriteLine($"Cut: {member.PercentageCut}%");
                 Console.WriteLine("...............");
                 Console.WriteLine();
-
             }
 
+            List<IRobber> crew = new List<IRobber>();
+
+            // for (int i = 1; i < 0; i++)
+            // //add logic that allows user to add operatives as long as the total percentage of cut is not > 100.
+            // //add logic that consolewritelines the remaining rolodex ops MINUS the operatives already added to crew. Check with instruction team whether I'm removing members from rolodex or simply not printing. IF simply not printing, I need to include index in the team printout so user can choose a valid index.
+            // //design a break from user who is done entering team members and a break for "can't go over 100% cut". Might be a try/catch.
+            // {
+            //     Console.WriteLine("Please enter the index of the operative you want on the heist.");
+            //     int o = int.Parse(Console.ReadLine());
+            //     crew.Add(rolodex[o]);
+            // }
+
+            crew.Add(tammy);
+            crew.Add(teddy);
+            crew.Add(mindi);
+
+            foreach (IRobber operative in crew)
+            {
+                operative.PerformSkill(FirstStreet);
+            }
+
+            bool checkSecurity = FirstStreet.IsSecure;
+//the math for percentage is not working out. outputs 0 each time.
+            if (checkSecurity == false)
+            {
+                Console.WriteLine($"Heist succeeds!");
+                foreach (IRobber operative in crew)
+                {
+                    double percent = (operative.PercentageCut / 100) * FirstStreet.CashOnHand;
+                    Console.WriteLine("...............");
+                    Console.WriteLine($"{operative.Name}");
+                    Console.WriteLine($"${percent}");
+                    Console.WriteLine("...............");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Heist failed :(");
+            }
 
 
 
