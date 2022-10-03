@@ -129,6 +129,7 @@ namespace heist
             foreach (IRobber member in rolodex)
             {
                 Console.WriteLine("...............");
+                Console.WriteLine($"Number: {rolodex.IndexOf(member)}");
                 Console.WriteLine($"{member.Name}");
                 member.nameClass();
                 Console.WriteLine($"Skill Level: {member.SkillLevel}");
