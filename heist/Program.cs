@@ -140,20 +140,39 @@ namespace heist
 
             List<IRobber> crew = new List<IRobber>();
 
-            // for (int i = 1; i < 0; i++)
-            // //add logic that allows user to add operatives as long as the total percentage of cut is not > 100.
-            // //add logic that consolewritelines the remaining rolodex ops MINUS the operatives already added to crew. Check with instruction team whether I'm removing members from rolodex or simply not printing. IF simply not printing, I need to include index in the team printout so user can choose a valid index.
-            // //design a break from user who is done entering team members and a break for "can't go over 100% cut". Might be a try/catch.
-            // {
-            //     Console.WriteLine("Please enter the index of the operative you want on the heist.");
-            //     int o = int.Parse(Console.ReadLine());
-            //     crew.Add(rolodex[o]);
-            // }
+            //add logic that allows user to add operatives as long as the total percentage of cut is not > 100.
+            //add logic that consolewritelines the remaining rolodex ops MINUS the operatives already added to crew. Check with instruction team whether I'm removing members from rolodex or simply not printing. IF simply not printing, I need to include index in the team printout so user can choose a valid index.
+            //design a break from user who is done entering team members and a break for "can't go over 100% cut". Might be a try/catch.
+            int totalPercentageOfTeam = 0;
+            int o;
+            for (int i = 1; i > 0; i++)
+            {
+                if (totalPercentageOfTeam < 100)
+                {
+                    Console.WriteLine("Please enter the index of the operative you want on the heist.");
+                    o = int.Parse(Console.ReadLine());
+                    if (rolodex[o].PercentageCut + totalPercentageOfTeam < 100)
+                    {
+                        crew.Add(rolodex[o]);
+                        Console.WriteLine($"{rolodex[o].Name} added");
+                        totalPercentageOfTeam += rolodex[o].PercentageCut;
+                        Console.WriteLine($"{totalPercentageOfTeam}");
+                    }
+                    else
+                    {
+                        break;
+                    }//so if I add it and it stays under 100, go, but if it goes over, consolewriteline "too high, pick another" or break or whatever
+                }
+                else
+                {
+                    break;
+                }
+            }
 
-            //added these to test percentage cut report
-            crew.Add(tammy);
-            crew.Add(teddy);
-            crew.Add(mindi);
+            // added these to test percentage cut report
+            // crew.Add(tammy);
+            // crew.Add(teddy);
+            // crew.Add(mindi);
 
             foreach (IRobber operative in crew)
             {
