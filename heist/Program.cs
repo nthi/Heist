@@ -38,7 +38,7 @@ namespace heist
             LockSpecialist tammy = new LockSpecialist();
             tammy.Name = "Tammy";
             tammy.SkillLevel = 300;
-            tammy.PercentageCut = 30;
+            tammy.PercentageCut = 40;
 
             rolodex.Add(ronny);
             rolodex.Add(mindi);
@@ -164,9 +164,10 @@ namespace heist
             if (checkSecurity == false)
             {
                 Console.WriteLine($"Heist succeeds!");
+
                 foreach (IRobber operative in crew)
                 {
-                    double percent = (operative.PercentageCut / 100) * FirstStreet.CashOnHand;
+                    double percent = ((FirstStreet.CashOnHand * 30) / 100);
                     Console.WriteLine("...............");
                     Console.WriteLine($"{operative.Name}");
                     Console.WriteLine($"${percent}");
