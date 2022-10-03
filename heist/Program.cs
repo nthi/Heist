@@ -38,7 +38,7 @@ namespace heist
             LockSpecialist tammy = new LockSpecialist();
             tammy.Name = "Tammy";
             tammy.SkillLevel = 300;
-            tammy.PercentageCut = 40;
+            tammy.PercentageCut = 30;
 
             rolodex.Add(ronny);
             rolodex.Add(mindi);
@@ -99,8 +99,8 @@ namespace heist
             FirstStreet.AlarmScore = new Random().Next(0, 100);
             FirstStreet.VaultScore = new Random().Next(0, 100);
             FirstStreet.SecurityGuardScore = new Random().Next(0, 100);
-            // FirstStreet.CashOnHand = new Random().Next(50000, 1000000);
-            FirstStreet.CashOnHand = 50000;
+            FirstStreet.CashOnHand = new Random().Next(50000, 1000000);
+            //FirstStreet.CashOnHand = 50000; //wrote to test percentage cut logic
 
 
 
@@ -149,6 +149,7 @@ namespace heist
             //     crew.Add(rolodex[o]);
             // }
 
+            //added these to test percentage cut report
             crew.Add(tammy);
             crew.Add(teddy);
             crew.Add(mindi);
@@ -159,20 +160,23 @@ namespace heist
             }
 
             bool checkSecurity = FirstStreet.IsSecure;
-//the math for percentage is not working out. outputs 0 each time.
-//possibly need to cast the math half to the right int/double? idk.
+
             if (checkSecurity == false)
             {
+                double addUpPercents = 0;
                 Console.WriteLine($"Heist succeeds!");
 
                 foreach (IRobber operative in crew)
                 {
-                    double percent = ((FirstStreet.CashOnHand * 30) / 100);
+                    double percent = ((FirstStreet.CashOnHand * operative.PercentageCut) / 100);
                     Console.WriteLine("...............");
                     Console.WriteLine($"{operative.Name}");
                     Console.WriteLine($"${percent}");
                     Console.WriteLine("...............");
+                    addUpPercents = addUpPercents + percent;
                 }
+                double yourCut = FirstStreet.CashOnHand - addUpPercents;
+                Console.WriteLine($"Your cut: ${yourCut}");
             }
             else
             {
