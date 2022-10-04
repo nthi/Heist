@@ -96,10 +96,10 @@ namespace heist
             }
 
             Bank FirstStreet = new Bank();
-            FirstStreet.AlarmScore = new Random().Next(0, 100);
-            FirstStreet.VaultScore = new Random().Next(0, 100);
-            FirstStreet.SecurityGuardScore = new Random().Next(0, 100);
-            FirstStreet.CashOnHand = new Random().Next(50000, 1000000);
+            FirstStreet.AlarmScore = new Random().Next(0, 101);
+            FirstStreet.VaultScore = new Random().Next(0, 101);
+            FirstStreet.SecurityGuardScore = new Random().Next(0, 101);
+            FirstStreet.CashOnHand = new Random().Next(50000, 1000001);
             //FirstStreet.CashOnHand = 50000; //wrote to test percentage cut logic
 
 
@@ -124,7 +124,7 @@ namespace heist
                 Console.WriteLine($"Most Secure: UNCERTAIN.");
             }
 
-            Console.WriteLine($"Team Report:");
+            Console.WriteLine($"Rolodex Report:");
             Console.WriteLine($"------------");
             foreach (IRobber member in rolodex)
             {
@@ -142,26 +142,51 @@ namespace heist
 
             //add logic that allows user to add operatives as long as the total percentage of cut is not > 100.
             //add logic that consolewritelines the remaining rolodex ops MINUS the operatives already added to crew. Check with instruction team whether I'm removing members from rolodex or simply not printing. IF simply not printing, I need to include index in the team printout so user can choose a valid index.
-            //design a break from user who is done entering team members and a break for "can't go over 100% cut". Might be a try/catch.
+            //I've tried a loop of member rolodex > member crew, if member != crew, print, and the reverse of crew, member, member != crew. Also put inside and outside the if (rolodex[o]). NOT working. Will remove listing for one round but not for next round. Check with instructor if not covered in review
+            
             int totalPercentageOfTeam = 0;
             int o;
             for (int i = 1; i > 0; i++)
             {
+                        // Console.WriteLine($"Remaining contacts in Rolodex:");
+                        // Console.WriteLine($"______________________________");
+                        // foreach (IRobber crewMember in crew)
+                        // {
+                        //     foreach (IRobber member in rolodex)
+                        //     {
+                        //         if (member != crewMember)
+                        //         {
+                        //             Console.WriteLine("...............");
+                        //             Console.WriteLine($"Number: {rolodex.IndexOf(member)}");
+                        //             Console.WriteLine($"{member.Name}");
+                        //             member.nameClass();
+                        //             Console.WriteLine($"Skill Level: {member.SkillLevel}");
+                        //             Console.WriteLine($"Cut: {member.PercentageCut}%");
+                        //             Console.WriteLine("...............");
+                        //             Console.WriteLine();
+                        //         }
+                        //     }
+                        // }
                 if (totalPercentageOfTeam < 100)
                 {
                     Console.WriteLine("Please enter the index of the operative you want on the heist.");
+
                     o = int.Parse(Console.ReadLine());
                     if (rolodex[o].PercentageCut + totalPercentageOfTeam < 100)
                     {
                         crew.Add(rolodex[o]);
                         Console.WriteLine($"{rolodex[o].Name} added");
                         totalPercentageOfTeam += rolodex[o].PercentageCut;
-                        Console.WriteLine($"{totalPercentageOfTeam}");
+                        Console.WriteLine($"Crew's cut so far: {totalPercentageOfTeam}");
+                        Console.WriteLine($"*****************");
+
+
                     }
+
                     else
                     {
                         break;
-                    }//so if I add it and it stays under 100, go, but if it goes over, consolewriteline "too high, pick another" or break or whatever
+                    }
                 }
                 else
                 {

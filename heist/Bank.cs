@@ -24,5 +24,9 @@ namespace heist
                 }
             }
         }
+        //should put a report method in here. Abstraction.
+        //make a new list of key/value pairs that are string/int to hold all the scores
+        //use .linq method to sort by highest
+        //or use query method
     }
 }
