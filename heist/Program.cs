@@ -126,6 +126,24 @@ namespace heist
 
             Console.WriteLine($"Rolodex Report:");
             Console.WriteLine($"------------");
+
+            // for (int i = 0; i < rolodex.Count; i++)
+            // {
+            //     Console.WriteLine("...............");
+            //     Console.WriteLine($"Operative # {i + 1}");
+            //     Console.WriteLine($"Name: {rolodex[i].Name}");
+            //     Console.WriteLine($"Specialty: {rolodex[i].Type}");
+            //     Console.WriteLine($"Skill Level: rolodex[i].SkillLevel");
+            //     Console.WriteLine($"Cut: {rolodex[i].PercentageCut}");
+            //     Console.WriteLine("...............");
+            // };
+
+            // Console.WriteLine("Select a new crew member:");
+            // int selection = int.Parse(Console.ReadLine());
+            // crew.Add(rolodex[selection - 1]);
+            // crew.ForEach(x => Console.WriteLine(x.Name));
+
+            
             foreach (IRobber member in rolodex)
             {
                 Console.WriteLine("...............");

@@ -11,6 +11,8 @@ namespace heist
         public int SkillLevel { get; set; }
         public int PercentageCut { get; set; }
 
+        public string Type {get;} = "Hacker";
+
         public void nameClass()
         {
             Console.WriteLine("Hacker");
